@@ -41,7 +41,7 @@ Estudo sobre o ReactJS
 > const webpack = require('webpack') 
 > 
 > module.exports = {
->     entry: './ex/index.js',
+>     entry: './ex/index.jsx',
 >     output: {
 >         path: __dirname + '/public',
 >         filename: './bundle.js'
@@ -71,6 +71,9 @@ Estudo sobre o ReactJS
 
  Que será o container da resposta do react.
 
- 
+ 4. Criamos diretorio ex e criamos o arquivo  index.jsx dentro dele
+ 5. No arquivo index.jsx inserimos o seguinte conteúdo.
+
+
 
 
