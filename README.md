@@ -32,4 +32,45 @@ Estudo sobre o ReactJS
     node_modules
     *.log
 
+ 
+## Configurando Build com Webpack
+
+1. Criamos na raiz do projeto o arquivo webpack.config.js 
+2. A configuração básica do arquivo tem teste conteúdo:
+
+> const webpack = require('webpack') 
+> 
+> module.exports = {
+>     entry: './ex/index.js',
+>     output: {
+>         path: __dirname + '/public',
+>         filename: './bundle.js'
+>     },
+>     devServer: {
+>         port: 8080,
+>         contentBase: './public',
+>     },
+>     module: {
+>         loaders: [{
+>             test: /.jsx?$/,
+>             loader: 'babel-loader',
+>             exclude: /node_modules/,
+>             query: {
+>                 presets: ['es2015', 'react']
+>             }
+>         }]
+>     }
+> }
+
+3. Criamos o diretório public e criamos o arquivo index.html 
+  com uma estrutura basica de html com charset = utf-8 e as tags:
+
+    <div id="app">
+    </div>
+    <script src='bundle.js'></script>
+
+ Que será o container da resposta do react.
+
+ 
+
 
