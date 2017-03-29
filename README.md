@@ -88,6 +88,7 @@ Estudo sobre o ReactJS
 > }
 
 *Nota*
+
 Repare que nesta arquivo não importamos o react-dom,  pois não vamos utilizar recursos do dom com react.
 
  2. No arquivo index.jsx importamos o nosso componente  com import Component from './component.jsx'
@@ -95,6 +96,7 @@ Repare que nesta arquivo não importamos o react-dom,  pois não vamos utilizar 
  ReactDom.render(<Component /> , document.getElementById('app')), que é a referencia do componente que está sendo criado.
 
  *Nota*
+
  Neste momento,   colocamos a referencia ao componente com a extensão .jsx (vamos remover isso no futuro.)
 
  4. Ao executar o script,  um erro é gerado, informando que não reconhece function (do componente)
@@ -121,3 +123,34 @@ Repare que nesta arquivo não importamos o react-dom,  pois não vamos utilizar 
     }, 
 
   3. Rodamos mais uma veis o webpack (npm run dev)
+
+
+  ## Primeiro Componente (Arrow Function)
+
+  1. O Arrow Function é um padrão de escrita de funções a ser seguido..
+
+    No nosso exemplo, o nosso componente pode ser escrito de varias formas,  vamos a elas...
+
+    Basico:
+
+    export default function () {
+        return <h1>Primeiro Componente! CDTS</h1>
+    }    
+
+    Ou assim: 
+
+    export default  () => {
+        return <h1>Primeiro Componente! CDTS</h1>
+    }   
+
+    Ou assim:
+
+    export default () => (
+        <h1>Primeiro Componente! CDTS</h1> 
+    )  
+
+    *Nota*  
+
+    Nesta última forma,  o parêntesis não significa que é a chave da função (function () {bla bla})  e sim apenas  com um container onde incluiremos o retorno da função,   que é implícito(não precisamos do termo return)
+
+
