@@ -113,7 +113,7 @@ Repare que nesta arquivo não importamos o react-dom,  pois não vamos utilizar 
         return <h1>Primeiro Componente!</h1>
     }
  
- ### Removendo extensão jsx dos componentes
+### Removendo extensão jsx dos componentes
 
   1. Ate o momento usamos para referenciar o componente a extensão .jsx no import (import Component from './component.jsx').  
   2. Mas vamos remover esta extensão e configurar o webpack para interpretar a leitura destes aquivos sem especificação da extensão. E para isso,  colocamos mais uma configuração no nosso webpack.config.js:
@@ -125,7 +125,7 @@ Repare que nesta arquivo não importamos o react-dom,  pois não vamos utilizar 
   3. Rodamos mais uma veis o webpack (npm run dev)
 
 
-  ## Primeiro Componente (Arrow Function)
+## Primeiro Componente (Arrow Function)
 
   1. O Arrow Function é um padrão de escrita de funções a ser seguido..
 
@@ -153,26 +153,71 @@ Repare que nesta arquivo não importamos o react-dom,  pois não vamos utilizar 
 
     Nesta última forma,  o parêntesis não significa que é a chave da função (function () {bla bla})  e sim apenas  com um container onde incluiremos o retorno da função,   que é implícito(não precisamos do termo return)
 
-  ## Propriedades do componente
+## Propriedades do componente
+
 
     Os componentes recebem parametros que são passados por referencia na tag.
     entao, vamos alterar o nosso componente para que ele receba um parâmetro...
 
     Ficará assim:
 
-    export default (props) => (
-        <h1>{props.value}</h1> 
-    )
+>     export default (props) => (
+>         <h1>{props.value}</h1> 
+>     )
 
-    que também podemos escrever assim, pois neste caso só existe um parâmetro...
-    export default props => (
-        <h1>{props.value}</h1> 
-    )    
+    que também podemos escrever assim, pois neste caso só existe um parâmetro.. .
+>     export default props => (
+>         <h1>{props.value}</h1> 
+>     )    
 
     e index.jsx colocamos os valor para o parametro:  ReactDom.render(<Component value='Primeiro Componente'/>, document.getElementById('app'))
 
     O retorno será o mesmo.
 
+## Exportando mais de um componente
+
+ 1. Vamos colocar 2 componentes em um unico arquivo (mesmo que um arquivo geralmente seja um componente)
+No arquivo component.jsx: 
+ > const Primeiro = props => (
+ >   <h1>Primeiro Componente!</h1>
+ > )
+ > 
+ > const Segundo = props => (
+ >    <h1>Segundo Componente!</h1>
+ > )
+
+export {Primeiro, Segundo}
+
+ 2. Vamos alterar o arquivo index.jsx que ficará com o seguinte conteúdo.
+
+> import React from 'react'
+> import ReactDom from 'react-dom'
+> import { Primeiro, Segundo } from './component'
+> 
+> ReactDom.render(
+>     <div>
+>         <Primeiro />
+>         <Segundo />
+>     </div>
+>     , document.getElementById('app'))
+
+
+ 3. Ao executar o webpack, o resultado sera o retorno dos dois compontents
+
+
+ *Nota*
+
+ Você também pode exportar os componentes do arquivo component.jsx colocando export antes da constante.
+
+ Assim no exemplo,  porderíamos utilizar a seguint sintaxe:
+
+> export const Primeiro = props => (
+>     <h1>Primeiro Componente!</h1>
+> )
+> 
+> export const Segundo = props => (
+>     <h1>Segundo Componente!</h1>
+> // export {Primeiro, Segundo}
 
 
     
