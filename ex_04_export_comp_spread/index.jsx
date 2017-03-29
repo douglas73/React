@@ -8,9 +8,6 @@ import Member from './member'
 ReactDom.render(
     <Family lastName='Silva'>
         <Member name='Guilherme' />
-        <Member name='Douglas' />
-        <Member name='Gariabaldi' />
-
     </Family>
       
     , document.getElementById('app'))
