@@ -75,7 +75,49 @@ Estudo sobre o ReactJS
  5. No arquivo index.jsx inserimos o seguinte conteúdo.
  6. Substituir a linha de teste de package.json para 
     "dev": "webpack-dev-server --progress --colors --inline --hot"
+ 7. Executamos o webpack  ( npm run dev )
 
+## Primeiro Componente 
 
+ 1. Criamos um arquivo component.jsx (path: /ex) com o seguinte conteúdo:
 
+> import React from 'react'
+> 
+> function () {
+>     return <h1>Primeiro Componente!</h1>
+> }
 
+*Nota*
+Repare que nesta arquivo não importamos o react-dom,  pois não vamos utilizar recursos do dom com react.
+
+ 2. No arquivo index.jsx importamos o nosso componente  com import Component from './component.jsx'
+ 3. Substituimos a linha ReactDom.render(<h1>Olá React</h1>, document.getElementById('app')) por 
+ ReactDom.render(<Component /> , document.getElementById('app')), que é a referencia do componente que está sendo criado.
+
+ *Nota*
+ Neste momento,   colocamos a referencia ao componente com a extensão .jsx (vamos remover isso no futuro.)
+
+ 4. Ao executar o script,  um erro é gerado, informando que não reconhece function (do componente)
+    Para isso, devemos export na function do component.jsx,  desta forma:
+    de: 
+    ---
+        function () {
+            return <h1>Primeiro Componente!</h1>
+        }    
+
+    para:
+    ---
+    export default function () {
+        return <h1>Primeiro Componente!</h1>
+    }
+ 
+ ### Removendo extensão jsx dos componentes
+
+  1. Ate o momento usamos para referenciar o componente a extensão .jsx no import (import Component from './component.jsx').  
+  2. Mas vamos remover esta extensão e configurar o webpack para interpretar a leitura destes aquivos sem especificação da extensão. E para isso,  colocamos mais uma configuração no nosso webpack.config.js:
+
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    }, 
+
+  3. Rodamos mais uma veis o webpack (npm run dev)
