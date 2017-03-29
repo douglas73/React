@@ -222,7 +222,7 @@ export {Primeiro, Segundo}
 ## Componentes filhos
 
  1. Neste exemplo,  criamos 2 componentes,  um chamado member e outro chamado silvaFamily.
- 2. No silvaFamily importamos o componente
+ 2. No silvaFamily importamos o componen
     
 
 
