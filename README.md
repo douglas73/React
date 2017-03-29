@@ -73,6 +73,8 @@ Estudo sobre o ReactJS
 
  4. Criamos diretorio ex e criamos o arquivo  index.jsx dentro dele
  5. No arquivo index.jsx inserimos o seguinte conteúdo.
+ 6. Substituir a linha de teste de package.json para 
+    "dev": "webpack-dev-server --progress --colors --inline --hot"
 
 
 
