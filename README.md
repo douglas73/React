@@ -219,7 +219,10 @@ export {Primeiro, Segundo}
 >     <h1>Segundo Componente!</h1>
 > // export {Primeiro, Segundo}
 
+## Componentes filhos
 
+ 1. Neste exemplo,  criamos 2 componentes,  um chamado member e outro chamado silvaFamily.
+ 2. No silvaFamily importamos o componente
     
 
 
