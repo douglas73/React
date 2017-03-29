@@ -102,13 +102,13 @@ Repare que nesta arquivo não importamos o react-dom,  pois não vamos utilizar 
  4. Ao executar o script,  um erro é gerado, informando que não reconhece function (do componente)
     Para isso, devemos export na function do component.jsx,  desta forma:
     de: 
-    ---
+  
         function () {
             return <h1>Primeiro Componente!</h1>
         }    
 
     para:
-    ---
+  
     export default function () {
         return <h1>Primeiro Componente!</h1>
     }
@@ -152,5 +152,30 @@ Repare que nesta arquivo não importamos o react-dom,  pois não vamos utilizar 
     *Nota*  
 
     Nesta última forma,  o parêntesis não significa que é a chave da função (function () {bla bla})  e sim apenas  com um container onde incluiremos o retorno da função,   que é implícito(não precisamos do termo return)
+
+  ## Propriedades do componente
+
+    Os componentes recebem parametros que são passados por referencia na tag.
+    entao, vamos alterar o nosso componente para que ele receba um parâmetro...
+
+    Ficará assim:
+
+    export default (props) => (
+        <h1>{props.value}</h1> 
+    )
+
+    que também podemos escrever assim, pois neste caso só existe um parâmetro...
+    export default props => (
+        <h1>{props.value}</h1> 
+    )    
+
+    e index.jsx colocamos os valor para o parametro:  ReactDom.render(<Component value='Primeiro Componente'/>, document.getElementById('app'))
+
+    O retorno será o mesmo.
+
+
+
+    
+
 
 

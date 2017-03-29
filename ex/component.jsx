@@ -1,5 +1,5 @@
 import React from 'react'
 
-export default () => (
-    <h1>Primeiro Componente! CDTS</h1> 
+export default prop => (
+    <h1>{prop.value}</h1> 
 )
