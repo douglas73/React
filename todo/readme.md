@@ -130,3 +130,78 @@ No terminal,  iniciamos o mongodb
        
        mongod
 
+### ODM e criação da API rest
+
+Criamos agora o diretório **api** dentro de **src**.
+Também criamos um diretório **todo** dentro de **api**.
+Dentro do diretório api\todo,  criamos os arquivos **todo.js** e **todoSevices.js**.
+
+    * Aquivo todo.js:
+    
+    const restful = require('node-restful')
+    const mongoose = restful.mongoose
+    
+    const todoSchema = new mongoose.Schema({
+        description: {  type: String, required: true},
+        done: { type: Boolean, required: true, default: false },
+        createdAt: { type: Date, default: Date.now }
+    })
+    
+    module.exports = restful.model('Todo', todoSchema)
+
+       * Arquivo todoService.js
+       
+        const Todo = require('./todo')  
+        Todo.methods(['get', 'post', 'put','delete'])
+        Todo.updateOptions({new: true,  runValidators: true })
+        module.exports = Todo
+
+## Rotas
+
+Vamos aprender a criar e trabalhar com rotas no React.
+
+Dentro do detório config vamos criar um arquivo chamado routes.js
+
+       * route.js:
+       
+       const express = require('express')
+
+        module.exports = function(server) {  //server é uma instancia de express
+            // API Routes
+            const router =  express.Router()
+            server.use('/api', router)
+        
+            //TODO Routes
+            const todoService = require('../api/todo/todoService')
+            todoService.register(router, '/todos')
+        
+            module.exports = Todo
+        }
+
+
+ - Vamos alterar o arquivo loader.js para :
+
+       * loader.js:
+        const server = require('./config/server')
+        require('./config/database')
+        require('./config/routes')(server) //serve instaciado na linha 1 
+
+ - vamos alterar também o arquivo *server.js*, adicionando a seguinte linha no final do arquivo:  **module.exports = server**:
+ 
+       * server.js: 
+       
+        const port = 3003
+
+        const bodyParser = require('body-parser')
+        const express = require('express')
+        const server = express()
+        
+        server.use(bodyParser.urlencoded({ extended: true}))
+        server.use(bodyParser.json())
+        
+        server.listen(port, function() {
+            console.log(`BACKEND esta executando na porta ${port}`)
+        })
+        
+        module.exports = server
+
