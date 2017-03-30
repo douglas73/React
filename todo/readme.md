@@ -81,6 +81,7 @@ Agora vamos configurar o servidor express, responsavel por ..
     * Conteudo do arquivo loader.js
     
     require('./config/server')
+    require('./config/database')
 
 
        * Conteúdo do arquivo server.js
@@ -111,4 +112,21 @@ Agora vamos configurar o servidor express, responsavel por ..
         [nodemon] watching: *.*
         [nodemon] starting `node src/loader.js`
         BACKEND esta executando na porta 3003
+
+### Configurando Banco de Dados (mongodb)
+
+A partir deste momento vamos configurar o mongodb.
+ - Criamos um novo arquivo ( *database.js* ) no diretório config.
+ - O conteúdo do arquivo database.js é:
+
+       * Conteúdo do arquivo dababase.js
+       
+       const mongoose = require('mongoose')
+        mongoose.Promise = global.Promise
+        module.exports = mongoose.connect('mongodb://localhost/todo')
+        
+No terminal,  iniciamos o mongodb  
+       * executando mongodb
+       
+       mongod
 
