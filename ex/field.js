@@ -7,9 +7,26 @@ class Field extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
+    limitChange(estado) {
+        if ( estado.length >= 15) {
+            console.clear()
+            console.log('Estrapolou o limite de caracteres')
+            return false;
+        } else {
+            console.log(`${this.state.value}   ${this.state.value.length} caracteres`)
+            return true
+        }
+    }    
+
     handleChange(event) {
-        this.setState({ value: event.target.value})
+        
+        if (this.limitChange(this.state.value)) {
+            this.setState({ value: event.target.value})
+        } 
+             
     }
+
+
  
     /**
      * O método Render() é obrigatório em todo componente do react (baseado em classe)
