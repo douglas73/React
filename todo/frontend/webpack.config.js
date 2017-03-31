@@ -5,18 +5,19 @@ module.exports = {
     entry: './src/index.jsx',
     output: {
         path: __dirname + '/public',
+        filename: './app.js'
     },
     devServer: {
         port: 8080, 
-        contentBase: './public'
+        contentBase: './public',
     },
     resolve: {
-        extensions: ['','js', 'jsx'],
+        extensions: ['','.js', '.jsx'],
         alias: {
             //Cria uma alias para o diretório node_modules 
             //Assim  se quisermos referenciar uma bliblioteca, poderemos fazer
             //desta forma:   modules/bootstrap/dist...
-            modules: __dirname +  '/nome_modules'
+            modules: __dirname +  '/node_modules'
         }
     },
     plugins: [
