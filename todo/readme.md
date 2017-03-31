@@ -1,4 +1,4 @@
-# React - CRIAÇÃO DO PRIMEIRO TODO LIST
+# React - CRIAÇÃO DO PRIMEIRO TODO LIST (BACKEND)
 ----
 Estudo sobre o React com a criação de um sistema de TODO LIST;
 
@@ -205,3 +205,65 @@ Dentro do detório config vamos criar um arquivo chamado routes.js
         
         module.exports = server
 
+### Habilitanto CORS
+
+Vamos criar um arquivo no diretório config chamado **cors.js**. E seu conteúdo é:
+
+       * module.exports = function(req, res, nex) {
+            res.header('Access-Control-Allow-Origin','*')
+            res.header('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, PATCH, DELETE')
+            res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type,             Accept')
+            next()
+        }
+
+Vamos alterar também o arquivo *serve.js* nas linhas  7, adicionando a chamada para o cors (middleware)
+
+       * Adicionando o Cors na linha 7 do *server.js*:
+       
+       const allowCors = require('./cors')
+
+       * Adicionando o uso cors pelo server (linha 10):
+       
+       server.use(allowCors)
+
+# React - CRIAÇÃO DO PRIMEIRO TODO LIST (CONFIGURAÇÃO DO FRONTEND)
+
+Vamops iniciar a configuração do frontend.
+ 1. Criamos o diretório frontend e entramos nele.
+ 
+## Instalando dependencias
+
+ 1. Criando package. js
+
+
+       * npm..
+       npm init -y
+
+ 2. Instalando as dependencias...
+
+        * Dependencias....
+        
+        npm i --save webpack@1.14.0
+        npm i --save webpack-dev-server@1.16.2
+        npm i --save babel-core@6.22.1
+        npm i --save babel-loader@6.2.10
+        npm i --save babel-plugin-react-html-attrs@2.0.0
+        npm i --save babel-plugin-transform-object-rest-spread@6.22.0
+        npm i --save babel-preset-es2015@6.22.0
+        npm i --save babel-preset-react@6.22.0
+        npm i --save extract-text-webpack-plugin@1.0.1
+        npm i --save css-loader@0.26.1
+        npm i --save style-loader@0.13.1
+        npm i --save file-loader@0.9.0
+        npm i --save bootstrap@3.3.7
+        npm i --save font-awesome@4.7.0
+        npm i --save react@15.4.2
+        npm i --save react-router@3.0.2
+        npm i --save axios@0.15.3
+
+ 3. Criamos o arquivo *.gitignore* em frontend para não gravar no repositório alguns arquivos e/ou pastas
+    
+        * .gitinore:
+        
+        node_modules
+        *.log
