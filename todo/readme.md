@@ -267,3 +267,65 @@ Vamops iniciar a configuração do frontend.
         
         node_modules
         *.log
+
+## Configurando o Build com Webpack
+
+ 1. criamos o arquvio webpack.config.js na raiz de frontend
+ 2. Criamos o seguinte conteúdo no arquivo *webpack.config.js*:
+
+
+        * Arquivo webpack.config.js:
+        
+        const webpack  = require('webpack')
+        const ExtractTextPlugin = require('extract-text-webpack-plugin')
+        
+        module.exports = {
+            entry: './src/index.jsx',
+            output: {
+                path: __dirname + '/public',
+            },
+            devServer: {
+                port: 8080, 
+                contentBase: './public'
+            },
+            resolve: {
+                extensions: ['','js', 'jsx'],
+                alias: {
+                    //Cria uma alias para o diretório node_modules 
+                    //Assim  se quisermos referenciar uma bliblioteca, poderemos fazer
+                    //desta forma:   modules/bootstrap/dist...
+                    modules: __dirname +  '/nome_modules'
+                }
+            },
+            plugins: [
+                new ExtractTextPlugin('app.css')
+            ],
+            module: {
+                loaders: [{
+                    test: /.js[x]?$/,
+                    loader: 'babel-loader',
+                    exclude: /node_modules/,
+                    query:{
+                        presets: ['es2015', 'react'],
+                        plugins: ['transform-object-rest-spread'] 
+                    }
+                },{
+                    test: /\.css$/,
+                    loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+                },{
+                    test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
+                    loader: 'file'
+                }]
+            }
+        }
+
+ 3. Altermos a linha 7 do arquivo package.json ...
+ 
+        * De "test": "echo \"Error: no test specified\" && exit 1" para ...
+        
+        "dev": "webpack-dev-server --progress --colors --inline --hot",
+        "production": "webpack --progress -p"
+
+    Dentro do nó  scripts.
+
+
