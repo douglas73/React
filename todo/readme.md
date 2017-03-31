@@ -258,6 +258,7 @@ Vamops iniciar a configuração do frontend.
         npm i --save bootstrap@3.3.7
         npm i --save font-awesome@4.7.0
         npm i --save react@15.4.2
+        npm i --save react-dom@15.4.2
         npm i --save react-router@3.0.2
         npm i --save axios@0.15.3
 
@@ -349,4 +350,80 @@ Vamops iniciar a configuração do frontend.
         </body>
         </html>
 
+ 5. Criamos dentro do diretório frontend o diretório **src** e demtro dele o diretório **main**.
+ 6. Dentro do diretorio *main* criamos o arquivo **app.jsx**.
+ 
+        * Arquivo srv/main/app.jsx
+        
+        import 'modules/bootstrap/dist/css/bootstrap.min.css'
+        import 'modules/font-awesome/css/font-awesome.min.css'
+        import React from 'react'
+
+        export default props => (
+            <div className='container'>
+                <h1>Teste</h1>
+            </div>
+        ) 
+        
+ 7. Criamos um novo diretório dentro do diretório src chamddo **todo** e dentro deste um arquivo chamado **todo.jsx**.
+
+        * Arquivo src/todo/tudo.jsx
+        
+        import React, {Component} from 'react'
+
+        export default class Todo extends Component {
+            render() {
+                return (
+                    <div>
+                        <h1>Todo</h1>
+                    </div>
+                )
+            }
+        }
+
+ 8. Para que a aplicação utilize esta component,  incluímos em src/main/app.jsx a chamada para ele.
+ 9. Alteramos o arquivo src/main/app.jsx para chamar o componte acima ...
+ 
+        * novo conteúdo de src/main/app.jsx:
+        
+        import 'modules/bootstrap/dist/css/bootstrap.min.css'
+        import 'modules/font-awesome/css/font-awesome.min.css'
+        import React from 'react'
+        import Todo from '../todo/todo'  //import do componente 
+        
+        export default props => (
+            <div className='container'>
+                <Todo />
+            </div>
+        ) 
+
+ 10. Agora vamos criar um novo diretório em src chamado **about**  e dentro dele um arquivo chamddo **about.jsx** com o seguinte conteúdo:
+
+
+        * Arquivo src/about/about.jsx:
+        
+        import React from 'react'
+
+        export default props => (
+            <div>
+                <h1>Sobre</h1>
+            </div>
+        )
+
+ 11. Vamos também importar esta nopvo componente (about) no arquivo src/main/app.jsx
+    alterando o arquivo para:
+
+
+        * import 'modules/bootstrap/dist/css/bootstrap.min.css'
+        import 'modules/font-awesome/css/font-awesome.min.css'
+        import React from 'react'
+        import Todo from '../todo/todo'  //import do componente 
+        import About from '../about/about'  //import do componente 
+        
+        export default props => (
+            <div className='container'>
+                <Todo />
+                <About />
+            </div>
+        ) 
 
