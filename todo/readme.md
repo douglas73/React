@@ -328,4 +328,25 @@ Vamops iniciar a configuração do frontend.
 
     Dentro do nó  scripts.
 
+ 4. Criamos o diretório **public** e dentro dele criamos o arquivo **index.html**.
+ 
+ O arquivo *index.html* tem o seguint conteúdo:
+
+        * Arquivo index.html:
+        
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Todo App</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="app.css">
+        </head>
+        <body>
+            <div id="app" class="container">
+            </div>
+            <script src="app.js"></script>
+        </body>
+        </html>
+
 
