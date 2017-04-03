@@ -350,6 +350,9 @@ Vamops iniciar a configuração do frontend.
         </body>
         </html>
 
+
+### Criando a estrutura da aplicaçao
+
  5. Criamos dentro do diretório frontend o diretório **src** e demtro dele o diretório **main**.
  6. Dentro do diretorio *main* criamos o arquivo **app.jsx**.
  
@@ -397,6 +400,8 @@ Vamops iniciar a configuração do frontend.
             </div>
         ) 
 
+### Criando os componentes Sobre e e Todo.
+
  10. Agora vamos criar um novo diretório em src chamado **about**  e dentro dele um arquivo chamddo **about.jsx** com o seguinte conteúdo:
 
 
@@ -426,4 +431,48 @@ Vamops iniciar a configuração do frontend.
                 <About />
             </div>
         ) 
+
+### Criando component menu
+
+ 12. Vamos criar um diretório chamado **template** dentro do diretório *src*.  E dentro deste diretório, vamos criar um arquivo chamadado **menu.jsx**.
+
+
+        * Arquivo src/template/menu.jsx:
+        import React from 'react'
+        
+        //componente baseado em uma função
+        export default props => (
+            <nav className='navbar navbar-inverse bg-inverse'>
+                <div className='container'>
+                    <div className='navbar-heaeder'>
+                        <a className='navbar-brand' href='#'>
+                            <i className='fa fa-calendar-check-o'></i> TodoApp
+                        </a>   
+                    </div>
+                    
+                    <div id='navbar' className='navbar-collapse collapse'>
+                        <ul className='nav navbar-nav'>
+                            <li><a href="#/todos">Tarefas</a></li>
+                            <li><a href="#/about">Sobre</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        )
+
+E fazemos o import do component menu no arquivo main/app.jsx:
+
+
+        *  import do component menu.jsx no main\app.jsx:
+        
+        import Menu from '../template/menu'  //import do componente menu
+
+E a tag de chamada do component...
+
+         
+        
+        <Menu />
+        <Todo />
+        <About />
+
 
