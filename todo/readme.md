@@ -475,4 +475,51 @@ E a tag de chamada do component...
         <Todo />
         <About />
 
+### Configurando as Rotas
+
+ 1. Agora vamos criar uma arquivo no diretório main chamado routes.jsx  com o seguinte conteúdo.
+
+        * Arquivo main/route.jsx:
+        
+        import React from 'react'
+        import { Router, Route, Redirect, hashHistory } from 'react-router'
+        
+        import Todo from '../todo/todo'
+        import About from '../about/about'
+        
+        export default props => (
+            <Router history={hashHistory}>
+                <Route path='/todos' component={Todo} />
+                <Route path='/about' component={About} />
+                
+                <Redirect from='*' to='/todos' /> 
+            </Router>
+        )
+
+Este arquivo vai gerar as nossas rotas para a aplicação.   Nas primeiras linha, importanmos  o React e também importamos Router,  Route, Redirect e hashHistory(padraõ de historico de paginas)  do react-router.
+
+Logo depois fazemos a importação dos components Todo e About.
+
+E então definimos nossa função para o Router que manteremos o historico (navegador) e criamos as rotas definindo o path (urls) e que componentes elas irão invocar.
+Por fim,   colocamos uma regra,  que define a pagina que será carregada caso alguma url nao especificada na rota seja digitada.
+
+Continuando,  vamos alterar o arquivo main/app.jsx  e realizar algumas alterações que o deixará com o seguinte conteúdo:
+
+        * arquivo *main/app.jsx*
+        
+        import 'modules/bootstrap/dist/css/bootstrap.min.css'
+        import 'modules/font-awesome/css/font-awesome.min.css'
+        import React from 'react'
+        import Menu from '../template/menu'  //import do componente menu
+        import Routes from './routes'
+        
+        export default props => (
+            <div className='container'>
+                <Menu />
+                <Routes />
+            </div>
+        ) 
+
+ > As alterações foram as seguintes: removemos os imports dos components  todo e about.  Depois fazemos o import das rotas com a linha   import Routes from './routes'.   Por fim, apagamos a referencia dos componentes  Todo e About,  substituindo pelo <Routes />
+
 
