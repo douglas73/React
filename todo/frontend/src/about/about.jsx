@@ -1,8 +1,23 @@
 import React from 'react'
+import PageHeader from '../template/pageHeader'
 
 //componente baseado em uma função
 export default props => (
     <div>
-        <h1>Sobre</h1>
+        <PageHeader name='Sobre' small='nós' />
+
+        <h3>Sobre nosso sobre...</h3>
+        <p className='text-justify'> 
+            Lorem Ipsum é simplesmente uma simulação de texto da 
+            indústria tipográfica e de impressos, e vem sendo utilizado 
+            desde o século XVI, quando um impressor desconhecido pegou 
+            uma bandeja de tipos e os embaralhou para fazer um livro 
+            de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco 
+            séculos, como também ao salto para a editoração eletrônica, 
+            permanecendo essencialmente inalterado. Se popularizou na década de 60, 
+            quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, 
+            e mais recentemente quando 
+            passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker
+        </p>
     </div>
 )
