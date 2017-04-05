@@ -522,4 +522,77 @@ Continuando,  vamos alterar o arquivo main/app.jsx  e realizar algumas alteraç�
 
  > As alterações foram as seguintes: removemos os imports dos components  todo e about.  Depois fazemos o import das rotas com a linha   import Routes from './routes'.   Por fim, apagamos a referencia dos componentes  Todo e About,  substituindo pelo <Routes />
 
+### Criando um component Header
 
+Vamos criar um aquivo chamado **pageHeader.jsx** dentro do diretório tamplate.
+
+        * pageHeader.jsx:
+        
+        import React from 'react'
+
+        export default props => (
+            <header className='page-header'>
+                <h2>{ props.name } <small>{ props.small }</small></h2> 
+            </header>
+        )
+
+
+ Também vamos coloca-lo no nosso todo.jsx (importa-lo), deixando ele com este conteúdo:
+ 
+        * todo.jsx:
+        
+        import React, {Component} from 'react'
+        import PageHeader from '../template/pageHeader.jsx'
+
+        export default class Todo extends Component {
+            render() {
+                return (
+                    <div>
+                        <PageHeader name='Tarefas' small='Cadastro' />
+                    </div>
+                )
+            }
+        }
+Aproveitando,  também vamos alterar nosso about para usar o component pageHeader.
+Substitiuimos a linha  <h1>Sobre</h1>  por <PageHeader name='Sobre' small='nós' />  além,  é claro de importar o component pageHeader com import PageHeader from '../template/pageHeader'
+
+### Criando TODO Form e TODO List
+
+Agora vamos criar 2 novos components e importa-los no nosso todo.jsx.   
+Os aquivos a serem criados são o **todoForm.jsx** e o **todoList.jsx**  dentro do diretório todo.
+
+        * todoForm.jsx:
+        
+        import React  from 'react'
+
+        export default props => (
+            <div>
+                <h1>Form</h1>
+            </div>
+        )
+ ---
+ 
+        * todoList.jsx:   
+        
+        import React from  'react'
+
+        export default props => (
+            <div>
+                <h1>List</h1>
+            </div>
+        )
+
+E vamos importá-los no todo.jsx:
+
+        * todo.jsx:
+        
+        ...
+        import TodoForm from './todoForm'
+        import TodoList from './todoList'
+        ...
+            <div>
+                <PageHeader name='Tarefas' small='Cadastro' />
+                <TodoForm />
+                <TodoList />
+            </div>
+        ...
