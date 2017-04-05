@@ -596,3 +596,219 @@ E vamos importá-los no todo.jsx:
                 <TodoList />
             </div>
         ...
+Vamos alterar o conteúdo do arquivo todoForm.jsx para:
+
+        * todo/todo.jsx;
+        
+        import React  from 'react'
+
+        export default props => (
+        <div role='form' className='todoForm'>
+            <div className='col-xs-12 col-sm-9 col-md-10'>
+                <input id='description' className='form-control' 
+                    placeholder='Adicione uma tarefa' /> 
+            </div>
+    
+            <div className='col-xs-12 col-sm-3 col-md-2'>
+                
+                <button className='btn btn-primary'>
+                    <i className='fa fa-plus'></i>
+                </button>
+            </div>
+        </div>
+
+Neste momento nosso formulário já tem "cara" de formulario.
+
+
+ ### Criando componente Grid e IconButtom
+ 
+ Vamos criar o compontente **grid.jsx** dentro do diretório template:
+ 
+ > Este component vai facilitar o uso de grids (colulas do bootstrap) de forma bem dinamica.
+ Com ele passamos através de parâmetros apenas as colunas das classes de grip do bootstrapa e este componente retorna a string completa da classe.   Assim:  ao digitamos toCssClass('10 6 2 2') ele rotornará um grid com a classe formada: **col-xs-10 col-xs-6 col-xs-2 col-xs-2**
+
+O arquivo grid.jsx no diretório template: 
+
+        * gid.jsx:
+        
+        import React, { Component } from 'react'
+
+        export default class Grid extends Component {
+            toCssClass(numbers) {
+                const cols = numbers ? numbers.split(' ') : []
+                let classes = ''
+        
+                if (cols[0]) classes += `col-xs-${cols[0]}`
+                if (cols[1]) classes += ` col-xs-${cols[1]}`
+                if (cols[2]) classes += ` col-xs-${cols[2]}`
+                if (cols[3]) classes += ` col-xs-${cols[3]}`
+        
+                return classes
+            }
+            render() {
+                const gridClasses = this.toCssClasses(this.props.cols || 12)
+                return (
+                    <div className={gridClasses}>
+                        {this.props.children}
+                    </div>
+                )
+            }            
+        }
+
+ >  O que ele faz?
+ A função espera como parâmetro uma sequencia de numeros separadas por espaços.  Este parâmetro é transformado em um array com o valores,  para cada índece (no máximo 4, que vai  representar o tamanhos para dispositivos) um valor de coluna.  No formulário, onde  se tem tags com className com stylos do bootstrap,  deve ser substituido por este component grid.
+
+ Vamos importar este componente no tudoForm.
+ 
+        *  todo.jsx:
+        
+        import React  from 'react'
+        import Grid from '../template/grid'
+        
+        export default props => (
+            <div role='form' className='todoForm'>
+                <Grid cols='12 9 10'>
+                    <input id='description' className='form-control' 
+                        placeholder='Adicione uma tarefa' /> 
+                </Grid>
+                <Grid cols='12 3 2'>
+                    <button className='btn btn-primary'>
+                        <i className='fa fa-plus'></i>
+                    </button>
+                </Grid>
+            </div>
+        )
+
+Vamos também componentizar o botão.
+Para isso vamos criar o componente **iconButton.jsx** dentro do diretório template.
+
+        * temmplate/iconButton.jsx:
+        
+        import React from 'react'
+
+        export default props => {
+            if (props.hide) {
+                return null
+            } else {
+                return (
+                    <button className={'btn btn-' + props.style}
+                     onClick={props.onClick}>
+                     <i className={'fa fa-' + props.icon}></i>
+                     </button>
+                )
+            }
+        }
+Agora importamos o component iconButton para todo.jsx:
+
+        Imports iconButton
+        
+        import IconButton from '../template/iconButton'
+
+E substituimos no nosso todoForm:
+De:
+    
+            <button className='btn btn-primary'>
+                <i className='fa fa-plus'></i>
+            </button>
+
+Para: 
+    
+        <IconButton style='primary' icon='plus'></IconButton>
+
+ 
+ 
+ ### Criando o eventos Adicionar...
+ 
+ Agora vamos comerçar a ver o react com ações chamando métodos.
+ 
+ Para isso vamos altear nosso toto.jsx,  criando método **handleAdd** que vai colocar um conteúdo no console ao clicar no botão do formulario.
+ 
+ ---
+ 1. Colocamos um construtor  no inicio da class Todo para referenciar os valores da handleAdd.
+ 
+            constructor (props) {
+                super (props)
+                this.handleAdd = this.handleAdd.bind(this)
+            }
+ 
+ 2. Criamos o método handleAdd:
+ 
+            handleAdd() {
+                console.log(this)
+            }
+ 
+ 3. Alteramos o método render() na linha   <TodoForm /> para passar o parãmetro que será usando ao se clicar no botão.
+
+        <TodoForm handleAdd={this.handleAdd} />
+
+ 4. No componente *todoForm* alteramos a linha do botão para:
+ 
+        <IconButton style='primary' icon='plus' 
+            onClick={props.handleAdd}></IconButton>
+
+ > Esta alteração vai fazer o uso do envento onClick e usar a chamada para função que esta em todo.js (handleApp).
+ 
+ Vamos realizar as seguintes alterações no  todo.jsx deixando ele da seguinte forma:
+ 
+        import React, {Component} from 'react'
+        import PageHeader from '../template/pageHeader.jsx'
+        import TodoForm from './todoForm'
+        import TodoList from './todoList'
+        
+        export default class Todo extends Component {
+        
+            constructor (props) {
+                super (props)
+                this.state = { description: '', list: [] }
+        
+                this.handleChange = this.handleChange.bind(this)
+                this.handleAdd = this.handleAdd.bind(this)
+                 
+        
+            }
+        
+            handleChange(e) {
+                this.setState({...this.state, description: e.target.value})
+            }
+            handleAdd() {
+                console.log(this)
+            }
+        
+            render() {
+                return (
+                    <div>
+                        <PageHeader name='Tarefas' small='Cadastro' />
+                        <TodoForm description={this.state.description}
+                                handleChange={this.handleChange}
+                                handleAdd={this.handleAdd} />
+                        <TodoList />
+                    </div>
+                )
+            }
+        }
+ 
+Também vamos alterar o arquivo todoForm.jsx para o seguinte conteúdo:
+
+        import React  from 'react'
+        import Grid from '../template/grid'
+        import IconButton from '../template/iconButton'
+        
+        export default props => (
+        
+            <div role='form' className='todoForm'>
+                <Grid cols='12 9 10'>
+                    <input id='description' className='form-control' 
+                        placeholder='Adicione uma tarefa'
+                        onChange={props.handleChange}
+                        value={props.description} /> 
+                </Grid>
+         
+                <Grid cols='12 3 2'>
+                    <IconButton style='primary' icon='plus' 
+                    onClick={props.handleAdd}></IconButton>
+                </Grid>
+            </div>
+        )
+
+Agora ao alterar o conteúdo do campo ou clicar no botão [ + ] o objeto referente ao componente será exibido no log.
+ 
