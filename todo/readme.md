@@ -811,4 +811,7 @@ Também vamos alterar o arquivo todoForm.jsx para o seguinte conteúdo:
         )
 
 Agora ao alterar o conteúdo do campo ou clicar no botão [ + ] o objeto referente ao componente será exibido no log.
- 
+
+
+ ---
+ Documento referente a parte 5_54 do curso de react-redux.
